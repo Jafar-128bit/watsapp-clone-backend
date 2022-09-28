@@ -19,8 +19,10 @@ const changeEventStream = () => {
             if (change.operationType === 'insert') {
                 const messageDetails = change.fullDocument;
                 pusher.trigger('messages', 'inserted', {
-                    name: messageDetails.user,
-                    message: messageDetails.message
+                    name: messageDetails.name,
+                    message: messageDetails.message,
+                    timestamps: messageDetails.timestamps,
+                    received: messageDetails.received,
                 }).then(response => {
                     console.log("Function Executed");
                 });
